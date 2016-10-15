@@ -8,6 +8,16 @@ Constructed and placed in the forest the camera looks like a garden lamp (see fi
 
 <img src="http://vrforest.io/images/camera.jpg">
 
+## Installation
+
+To install the software clone the project onto a raspberry pi and run the install script.
+
+```bash
+git clone https://github.com/khufkens/photosphere.git
+sh install_photosphere.sh
+```
+You will have to edit the crontab manually to add the server argument (for now).
+
 ## Parts List
 
 I assume that common items such as screws and glue (pvc, silicone) are available to makers.
