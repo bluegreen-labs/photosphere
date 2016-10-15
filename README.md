@@ -1,6 +1,6 @@
 # Photosphere
 
-The photosphere project combines a Rico Theta S and a raspberry pi with a custom outdoor housing into a rugged 360 (outdoor) time-lapse camera. In my application I track changes in leaf development in a North-Eastern US forest, but other applications are possible.
+The photosphere project combines a Rico Theta S and a raspberry pi with a custom outdoor housing into a rugged 360 (outdoor) time-lapse camera. In my application I track changes in leaf development in a North-Eastern US forest. You can visit the project website at (virtualforest.io)[http://virtualforest.io]. However, other applications are possible (hints on how to do nighttime images through the USB API are welcome).
 
 The housing is made of standard PVC fittings, sitting on top of a garden fence post. The optics are covered by a glass lamp shade to provide optimal transmission and limited deformation (acrylic globes can be used as well). The only custom part is the plate on which the camera is mount using 1/4" steel thread. This plate is cut out of 3mm acrylic plastic. A vertical support also holds the raspberry pi to keep things tidy (see cad files). I use two 3mm plates extra rigidity (glued together). You can also use a 6mm top plate and a 3mm vertical plate. The inside of the "lens cover" is spray painted matte black to limit reflections.
 
@@ -12,7 +12,6 @@ Constructed and placed in the forest the camera looks like a garden lamp (see fi
 
 I assume that common items such as screws and glue (pvc, silicone) are available to makers.
 
-<center>
 <table style="width:80%">
 <tbody>
 <tr>
@@ -109,4 +108,3 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 </tr>
 </tbody>
 </table>
-</center>
