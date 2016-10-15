@@ -1,0 +1,444 @@
+2016-01-12 Hedi Hamzaoui (Parrot S.A.)
+	* New option to send generic PTP commands from commandline
+2013-01-11 Mariusz Woloszyn
+	* Started work on 1.2
+2007-08-23 Mariusz Woloszyn
+	* ptp-pack.c: fixed signed/unsigned conversion bug
+	* release: 1.1.10
+2007-08-01 Mariusz Woloszyn
+	* release: 1.1.9
+
+2007-08-01 Mariusz Woloszyn
+	* :Fixed warnings
+
+2007-07-27 Mariusz Woloszyn
+	* ptp.h: added PTP_DPC_CANON_ViewfinderOutput as requested by 
+	Eric P Caillibot
+
+2006-06-06 Mariusz Woloszyn
+	* properties.c: added couple fo Nikon D200 properties meanings
+	* ptpcam.c, ptpcam.h: added simple SIGINT handling
+
+2006-05-05 Mariusz Woloszyn
+	* ptpcam.c, ptp.c, ptp.h, properties.c, ptpcam.h: Added Nikon Direct
+	Capture support
+
+2005-12-16 Mariusz Woloszyn
+	* ptpcam.c: Ivan Middleton little patch that make libptp2 work under
+	OXS.
+
+2005-12-16 Mariusz Woloszyn
+	Introduced new events handling code... It's still under work yet. The
+	purpose for the changes was to make libptp2 compatible with Nikon D2X.
+
+2005-11-01 Mariusz Woloszyn
+	* src/*.[ch]: Introduced --set; introduced code allowing reading and
+	setting properties by names and sybolic values: like
+	ptpcam --set NIKON-Saturation --val Enhanced, (abreviations allowed);
+
+2005-10-31 Mariusz Woloszyn
+	* src/ptp.c: added more debug, moved property code to properties.c
+	* src/ptp.h: added new property handling functions
+	* src/ptpcam.c: change verbose meaning (-v detailed info,
+	  --verbose=2 and more debug information), introduced properties
+	  meaningfull display code
+	* src/properties.c: file added; properties values interpretation
+	  code
+	* src/Makefile.am: added properties.c
+
+2005-10-30 Mariusz Woloszyn
+	* src/ptp.c, src/ptp.h: code cleanup and typos fixed;
+	  added more comments, introduced ptp_get_datatype_name(),
+	  added couple of NIKON properties
+	* src/ptpcam.c, src/ptpcam.h: introduced --show-all-properties and
+	  --show-unknown-properties (both usefull for debuging)
+
+2005-10-26 Mariusz Woloszyn
+	* configure.in: added --with-libusbdir
+
+2005-10-26 Mariusz Woloszyn
+	* src/ptpcam.c: add call to usb_set_configuration(); it's a good
+	practice and renders windows port working :)
+
+2005-09-29 Mariusz Woloszyn
+	* src/ptp-pack.c: fix a bug that caused improper display of 32bit
+	  enumerated properties, thanks to Alexander Oelzant for pointing
+	  out the bug
+
+2005-09-29 Mariusz Woloszyn
+	* configure.in: better libusb version detection implemented
+	* src/ptp-pack.c: silence gcc warnings
+
+2005-09-07 Mariusz Woloszyn
+	* configure.in, Makefile.am: use myusb only on Linux
+	* ptpcam.c: use myusb interface instead of libusb in case of Linux,
+	  beside that it works where URB fails it is also abou 20% to 50%
+	  faster!!!
+	* ptpcam.h: define myusb interface
+
+2005-09-07 Mariusz Woloszyn
+	* Initial 1.1.0 commit
+	* ptpcam.c: fixed minor bug on usb read
+	* ptpcam.h: fixed typo
+	* myusb.c: added private usb bulk read/write code
+	* configure.in, Makefile.am: updated version added new files, fixed
+	  parralel build problem (thanks to Daniel Black for patch)
+
+
+2005-07-26 Mariusz Woloszyn
+	* ptpcam.c: file creation time prserved accross download
+2005-07-07 Mariusz Woloszyn
+	* ptp.c, ptpcam.c, ptpcam.h: better capture, better error handling,
+	  code polishing
+2005-07.02 Mariusz Woloszyn
+	* src/ptpcam.c: added --loop-capture
+	* configure.in: changed version number, improved libusb checking
+2005-07-02 Mariusz Woloszyn
+	* src/ptpcam.c, src/ptp.c: fixed a bug that caused files over 2MB to
+	  be corrupted while downloading. 
+2005-07-02 libptp2-1.0.3 started
+2005-05-06 Mariusz Woloszyn
+	* ptpcam.c: added NIKON capture workaround
+2005-04-21 Mariusz Woloszyn
+	* src/ptpcam.c,src/ptpcam.h: added --capture, --delete-object and
+	  --delete-all-files support
+2005-03-01 Mariusz Woloszyn
+	* ptp.c, ptp.h, ptp-pack.c, ptpcam.c: moved to src
+	* src/ptpcam.c: moved some defines and definitions to ptpcam.h,
+	  added "get all files" operations, added --overwrite mode,
+	  fixed stall problem for kernels 2.6.x (affecting CANON cameras),
+	  some code cleanup and reorganization, changed comments to /**/
+	* src/ptp.c, src/ptp.h: fixed properties typos and added new
+	  properties
+	* src/ptpcam.h: added
+	* configure.in, Makefile.am, src/Makefile.am: improved and adapted
+	  build system
+2005-02-14 Mariusz Woloszyn
+	* ptpcam.c: fix for canon STALL problem; big thanks come to
+		DervishD (bugs[A@T]dervishd.net) for helping to identify the
+		problem and performing lot of tests.
+2005-01-20 Mariusz Woloszyn
+	* ptpcam.c: fixed mmap() return value comparision, thx to Pallab Basu
+2005-01-10 Mariusz Woloszyn
+	* ptp.h, ptp.c: added Nikon properties reported by Steve Harris
+2004-07-28 Mariusz Woloszyn
+	* README: minor changes, updated the copyright notice;
+	* configure.in: changed the version to 1.0.1 and updated the library
+			version;
+	* ptp.c: - LICENSE CHANGED TO GPL, 
+		 - changed behavior of ptp_usb_getdata(), if *data is not
+		   NULL no memory allocation is performed,
+		 - ptp_perror(), ptp_get_operation_name,
+		   ptp_get_property_name added/updated to return proprietary
+		   extension data;
+	* ptp.h: - LICENSE CHANGED TO GPL,
+		 - added ptp_get_operation_name();, ptp_get_property_name();
+	* ptpcam.c: updated the copyright notice, introduced new
+		    capabilities of: listing operations supported, listing
+		    files, downloading files and displaying camera info;
+		    added interrupt endpoint reading function, removed dead
+		    code, removed get_property_description();
+2004-07-16 Mariusz Woloszyn
+	* ptp.h, ptpcam.c: added NIKON extension code and clear halt fixup
+	  by Corey Manders
+	* m4/byteorder.m4, stdint.m4: Added quoting for Automake >= 1.8
+	* config.h.in: removed
+2003-12-18 Mariusz Woloszyn
+	* ptp.c, ptp-h.c, ptp-pack.c: added Canon specific PTP extension
+	  code by Nikolai Kopanygin
+2003-12-17 Mariusz Woloszyn
+	* ptp.c, ptp.h, ptp-pack.c: changed comments from // to /* */
+	* ptpcam.c: fixed a bug that caused ptoprties names to not be displayed
+	* config.h.in: updated for new autoconf
+	* configure.in: changed version numbr to 1.0pre7
+2003-12-17 Mariusz Woloszyn
+	* ptp.c, ptp.h: fixed ptp_getdevicepropvalue(), thanks to: 
+	  Nikolai Kopanygin
+2003-07-18 Mariusz Woloszyn
+	* ptp.h: changed #include <libptp-endian.h> to
+	  #include "libptp-endian.h"
+	* m4/byteorder.m4: chabged #include <_stdint.h> to
+	  #include "_stdint.h"
+2003-06-23 Mariusz Woloszyn
+	* configure.in: after reading autoconf documentation (yes, some people
+	  do really read documentation) i found that --disable-ptpcam is the
+	  right way to disable building some package parts (rather than
+	  --without-*), so I changed --without-ptpcam to --disable-ptpcam!
+	* README: updated readme to mention --disable-ptpcam
+2003-06-09 Mariusz Woloszyn
+	* Makefile.am: added DISTCLEANFILES to distclean _stdint.h 
+	  & libptp-endian.h; defined libptp2 includes dir and files
+	* configure.in: reorganized library versioning system
+2003-05-28 Mariusz Woloszyn
+	* ptp.h: two more CANON properties (thanks to Jean-Nicolas Kuttler)
+	* ptpcam.c: two more CANON properties (thanks to Jean-Nicolas Kuttler)
+2003-05-26 Mariusz Woloszyn
+	* ptp.h: added some CANON extension device property codes (thanks
+	  goes to Jean-Nicolas Kuttler)
+	* ptpcam.c: added support for CANON extension device property codes
+	* README: fixed typos
+2003-05-24 Mariusz Woloszyn
+	* ptpcam.c: fixed bug causing not displaying unknown properties
+2003-05-23 Mariusz Woloszyn
+	* README: at last (but not least) the great README!!!
+	* ptpcam.c: a couple of typos
+2003-05-19 Mariusz Woloszyn
+	* Makefile.am: reorganized configure to build without ptpcam
+	* configure.in: allowed configure --without-ptpcam
+	* TODO: new TODO for standalone 1.0 release
+2003-05-19 Mariusz Woloszyn
+	* Makefile.am: added library versioning (currrent varsion 1.0.0)
+	* configure.in: added library versioning (currrent varsion 1.0.0)
+	* ptpcam.c: changed displaying of property values
+2003-05-15 Mariusz Woloszyn
+	* .cvsignore: added _stdint.h to .cvsignore
+	* README: reorganized for stand alone release (still lacks ptpcam
+	  detailed description)
+2003-05-14 Mariusz Woloszyn
+	* started stand alone libptp2 1.0dev1; imported into libptp2 cvs;
+	  prepared for stand alone distribution (autoconf/automake
+	  implemented)
+2003-05-14 Mariusz Woloszyn
+	* ptpcam.c: changed test_ptp.c to ptpcam.c;
+	* Makefile.am: changed test_ptp.c to ptpcam.c;
+	* TODO: added the idea of error reporting improvement
+	* README: reorganized a bit
+2003-05-13 Mariusz Woloszyn
+	* ptp-pack.c: ptp_pack_DPV() fixup;
+	* ptp.c: reorganized reporting errors, added ptp_perror();
+	* ptp.h: added ptp_perror() prototype;
+	* test_ptp.c: reorganized reporting errors; added property setting
+	  support!
+2003-05-12 Mariusz Woloszyn
+	* ptp.c: fflush(stderr) on error and debug; 
+	  added datatype argument for ptp_getdevicepropvalue();
+	  added ptp_setdevicepropvalue();
+	* ptp-pack.c: added ptp_unpack_DPV() and ptp_pack_DPV();
+	  fixed missing strings while unpacking enumerated DPD;
+	* ptp.h: fixed ptp_getdevicepropvalue() prototype and added
+	  ptp_setdevicepropvalue() prototype;
+	* .cvsignore: changed ptp_test to ptpcam
+	* Makefile.am: changed ptp_test to ptpcam
+	* test_ptp.c: reorganized debug/error output, added more verbose
+	  levels; fixed extension properties debug (only EK supported as for
+	  now); added property supported values output; 
+2003-05-09 Mariusz Woloszyn
+	* test_ptp.c: added the device reset option (uses class specific
+	  reset)
+2003-05-09 Mariusz Woloszyn
+	* ptp.h: added some Kodak extension device property codes
+	  definitions
+	* test_ptp.c: added properties listing support and --force option
+
+2003-05-01  Hubert Figuiere  <hfiguiere@teaser.fr>
+
+	* library.c: add explicitly DSC-P32 (was autodetected)
+	  add Coolpix 2000
+
+2003-04-25 Mariusz Woloszyn
+	* Makefile.am: added ptp_test as noinst_PROGRAMS
+	* README: changed references to test_ptp to ptp_test
+	* test_ptp.c: added some functions prototypes (to avoid warnings),
+	  reconstructed usage() plus some cosmetic changes
+
+2003-04-25 Mariusz Woloszyn
+	* library.c: romved dups in cameras declaration, cosmetic --about
+	  changes
+
+2003-04-25 Mariusz Woloszyn
+	* README: added to ptp2
+	* test_ptp.c: added to ptp2
+	* TODO: added to ptp2
+
+2003-04-25 Mariusz Woloszyn
+	* library.c: added perror on gp_port_read() and write error; it
+	  won't hurt
+	* ptp.c: NULL does not have to be 0 bug fixed;
+	  cosmetics error output tuning;
+	  unpack structures only if transaction succeeded
+	* ChangeLog: reformated this file ;)
+
+2003-04-12 Marcus Meissner <marcus@jet.franken.de>
+	
+	* ptp.c, library.c: Check return codes for property get during
+	  --config.
+
+2003-04-10 Mariusz Woloszyn
+	* library.c: added Canon A70
+2003-04-03 Mariusz Woloszyn
+	* ptp.c: added ptp_free_devicepropdesc()
+	* ptp.h: added ptp_free_devicepropdesc()
+	* library.c: ptp_free_devicepropdesc() used to free allocated
+	  structures
+2003-04-03 Mariusz Woloszyn
+	* library.c: enabled getting config support;
+	  curently only getting batery level is supported;
+	* ptp-pack.c: "finished" Device Property Describing Dataset
+	  unpacking function ptp_unpack_DPD();
+	* ptp.h: changed PTP_DC_* to PTP_DTC_* (DTC stands for DataType Code);
+	  changed PTPDevicePropDesc fields name;
+	* ptp.c: added ptp_getdevicepropvalue() (not working properly yet);
+2003-04-01 Mariusz Woloszyn
+	* library.c: added Kodak CX4200 explicite support;
+	  added some get config code (it's not enabled, nor finished yet);
+	  added some extra debug info about events and properties supported
+	* ptp-pack.c: intoduced ptp_unpack_DPD (not finished yet)
+	* ptp.c: added ptp_getdevicepropdesc()
+	* ptp.h: introduced some device property describing structures and
+	  constants
+
+2003-03-29 Mariusz Woloszyn
+	* library.c: enabled downloading of nonimage files
+	* ptp.c: fixed a bug in capture code
+
+2003-03-29 Mariusz Woloszyn
+	* library.c: enabled back capture image support
+
+2003-03-29 Mariusz Woloszyn
+	* ptp.h: added Nparam field to PTPContainer
+	* ptp.c: using Nparam field we send requests with only used params
+	  to the camera (although specs says it's legal, some cameras do not
+	  like it)
+
+2003-03-29 Mariusz Woloszyn
+	* ptp.c: fixed a memcopy size bug
+2003-03-27 Mariusz Woloszyn
+        * library.c: added HP PhotoSmart 320
+
+2003-01-08 Mariusz Woloszyn
+	* ptp.c: cosmetic
+	* ptp-pack.c: fixed a bug in ptp_unpack_DI(), totallen could be
+	  bigger than uint8_t
+	* library.c:  added camera summary
+
+2003-01-08 Mariusz Woloszyn
+	* ptp-pack.c:
+	* ptp.c: fixed buggy ptp_usb_senddata()
+
+2003-01-06 Mariusz Woloszyn
+	* updated some comments, added some extra debug and introduced
+	  support for senobjectinfo and sendobject.
+	* Makefile.am: changed driver name to ptp2
+
+2003-01-03 Mariusz Woloszyn
+	* Commited version 2 of libptp2 and ptp driver.
+	  This code is unfinished yet, but it's meant to be transport layer
+	  independent. It fixes a lot of other bugs also.
+
+2002-10-16 Stephen H. Westin
+	* library.c: Nikon D100 has a PTP mode
+
+2002-10-03  Lutz Müller <lutz@users.sourceforge.net>
+
+	* Makefile.am: -I$(top_builddir)/libgphoto2
+
+2002-08-20 Mariusz Woloszyn
+
+	* README: added some descriptions and hints for users
+
+2002-08-02 Mariusz Woloszyn
+
+	* ptp-pack.c: Fixed an awfull bug (one byte overflow).
+	  Thanks to go to Hubert Figuiere for pointing me at Valgrind, the
+	  tool that helped me to find this bug.
+	* ptp-pack.c: initialized uninitialized timezone structure
+
+2002-06-10 Mariusz Woloszyn
+	* added basic capture functionality with events support
+
+2002-03-18 Mariusz Woloszyn
+	* library.c: added multiple storage support
+	* ptp.c: fixed missed parameter for getstorageinfo
+
+2002-03-14 Mariusz Woloszyn
+	* library.c: undefined file is a file
+
+2002-03-06 Marcus Meissner
+	* library.c: translate the error messages
+
+2002-03-05 Mariusz Woloszyn
+	* ptp.c: updated ptp_getobjecthandles() to be protocol compliant
+	* ptp.c: rewrited ptp_transaction and ptp_sendreq code to send no
+	  more bytes than expected by device (fix for HP cameras)
+	
+2002-03-04 Mariusz Woloszyn
+	* library.c: some vendor/product IDs added
+	* library.c: changed initial transaction_id
+	* ptp.c: added ptp_getstorageids, fixed ptp_getobjecthandles
+	* ptp-pack.c: added ptp_unpack_OH, ptp_unpack_SIDs,
+	  ptp_unpack_uint32_t_array
+	* ptp.h: added typedef of PTPStorageIDs, ptp_getstorageids function
+	  prototype
+	  (all changes according to TODO, multi storage support)
+
+2002-01-16  Lutz Müller <lutz@users.sourceforge.net>
+
+	* library.c: No time for previews...
+
+2002-01-16 Mariusz Woloszyn
+	* ptp-pack.c:     added fake date packing
+	* ptp.c:  Fixed ptp_ek_sendfileobjectinfo to use packed structures
+	* library.: started implementation of upload file (for Kodak only!)
+
+2002-01-13  Lutz Müller <urc8@rz.uni-karlsruhe.de>
+
+	* library.c: Remove references to gp_camera_set_error.
+
+2002-01-11 Marcus Meissner <marcus@jet.franken.de>
+	
+	* Makefile.am: Moved ptp-pack.c from SOURCES to EXTRA_DIST, since
+	  it cannot be compiled stand alone.
+
+2002-01-10 Dan Fandrich <dan@coneharvesters.com>
+
+	* Makefile.am: Added ptp-pack.c
+
+2002-01-09 Dan Fandrich <dan@coneharvesters.com>
+
+	* library.c:
+	* ptp.c:
+	* ptp.h: Moved include of time.h to ptp.h to get time_t definition
+	  Moved typedef lines after their dependent definitions.
+	  Fixed spelling of PTPDeviceInfo.
+
+2002-01-09 Mariusz Woloszyn
+	* Started ptp fs implementation
+
+2002-01-08 Mariusz Woloszyn
+	* Added pack / unpack C structures to ptpdatasets code
+	* fixed host byteorder / data layer byteorder problem
+
+2002-01-04 Mariusz Woloszyn
+	* Added workaround for ioctl return 0 problem (this does not hurt)
+	* Added DX-3215 support
+	* removed hto*le() stuff
+	* updated TODO (describes how to solve byteorder problem)
+
+2001-12-14 Mariusz Woloszyn
+	* huge parts of code rewriten, added SENDDATA transaction feature,
+	added make directory ability (curently BROKEN!!!)
+
+2001-12-14 Mariusz Woloszyn
+	* file deleting implemented
+
+2001-12-13 Mariusz Woloszyn
+	* whole parts of code has been rewriten
+
+2001-12-13 Mariusz Woloszyn
+	* added implementation of Object Format, fixing get_info_func
+
+2001-12-11  Lutz Müller <urc8@rz.uni-karlsruhe.de>
+
+	* library.c: Add some debugging stuff.
+
+2001-12-02  Mariusz Woloszyn
+
+	* library.c: Updatet vendor & product numbers for Kodak DX-3900.
+
+2001-12-02  Lutz Müller <urc8@rz.uni-karlsruhe.de>
+
+	* library.c: Fix warning
+
+2001-12-02  Lutz Müller <urc8@rz.uni-karlsruhe.de>
+
+	* library.c: Fixed vendor/product if of HP PhotoSmart 318.

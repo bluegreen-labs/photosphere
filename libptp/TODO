@@ -1,0 +1,28 @@
+
+1. poprawic ustawianie propertiesow: najpierw atoi sprawdza czy to jest
+numer, jesli numer to jedzie po numerze, jezeli nie numer to probuje po
+nazwie.
+
+2. poprawa capture: niech przed trigerem sprawdza ile wynosi "Exposure Time"
+i jezeli sie da odczytac to niech na tyle ustawia timeout.
+
+3. moze dobrze byloby zapuscic --initiate-capture?
+
+4. kilka opcji w linii: np. -c --time 20 -iso 200 -f-number 10
+
+
+
+
+Potwierdzenie delete.
+Sciaganie z kryterium daty (z danej daty, z tego samego dnia co okreslona
+fota itp.).
+Sprawdzanie rozmiaru (ile wszystkie, ile kryterium, czy wystarczy miejsca na
+dysku).
+
+TODO:
+
+- check for free() all malloced memory ( consider custom *alloc() wrappers )
+
+- add batching support
+- implement range download/delete and so on
+- file upload
