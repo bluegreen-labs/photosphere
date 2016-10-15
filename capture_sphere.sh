@@ -178,6 +178,7 @@ fi
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
 || [[ "$upload" == "t" || "$upload" == true ]]
 then
+	# puts images in the 'data' folder of an anonymous FTP server
 	lftp ftp://anonymous:anonymous@${server} -e "mirror --verbose --reverse --Remove-source-files ./ ./data/ ;quit"
 fi
 
