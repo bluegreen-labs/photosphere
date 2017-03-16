@@ -105,8 +105,8 @@ done
 if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] || [[ "$nightmode" == "f" || "$nightmode" == "false" ]];
 	then
 
-	# loop over 3 exposure settings
-	exposures="2000 0 -2000"
+	# loop over 2 exposure settings
+	exposures="0 -2000"
 	
 	for exp in $exposures;do
 		# Change settings
@@ -122,8 +122,7 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] || [[ "$nightmode" == "f
 	
 		# list last file
 		handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
-		echo $handle
-		filename=`ptpcam -L | grep 0x | awk '{print $5}'`
+		#filename=`ptpcam -L | grep 0x | awk '{print $5}'`
 
 		# grab the last file
 		ptpcam --get-file=$handle
@@ -147,9 +146,13 @@ else
 	# shutter speeds !!!!!
 	
 	# Change settings
-	ptpcam --set-property=0x500E --val=0x0004 # ISO priority
+	ptpcam --set-property=0x500E --val=0x0001 # set ? priority
 	ptpcam --set-property=0x5005 --val=0x8001 # set WB
-	ptpcam --set-property=0xD00F --val=30,1 # set shutter
+	ptpcam --set-property=0x500F --val=200 # set ISO
+	
+	# hex 1e = 30 decimal 01 = 1 => 30 / 1 s
+	echo -e -n  '\x1e\x00\x00\x00\x01\x00\x00\x00' > /tmp/exposure.bin # 30s
+	ptpcam -R 0x1016,0xd00f,0,0,0,0,/tmp/exposure.bin
 	
 	# snap picture
 	# and wait for it to complete (max 60s)
@@ -157,12 +160,14 @@ else
 	sleep 60
 	
 	# list last file
-
 	handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
-	filename=`ptpcam -L | grep 0x | awk '{print $5}'`
+	#filename=`ptpcam -L | grep 0x | awk '{print $5}'`
 
 	# grab the last file
 	ptpcam --get-file=$handle
+
+	# grab filename of the last downloaded file
+	filename=`ls -t | head -1`
 
 	# create filename based upon time / date
 	newfilename=`echo $camera\_exp0\_$datetime.jpg`
