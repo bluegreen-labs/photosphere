@@ -31,57 +31,57 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/thetas.png"></td>
-<td><a href="https://www.amazon.com/Ricoh-Theta-Digital-Camera-Black/dp/B014US3FQI/ref=sr_1_1?ie=UTF8&qid=1476554438&sr=8-1&keywords=theta+s">Ricoh Theta S</a></td>
+<td>Ricoh Theta S</td>
 <td>$350</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/pi.png"></td>
-<td><a href="https://www.amazon.com/Raspberry-Pi-RASP-PI-3-Model-Motherboard/dp/B01CD5VC92/ref=sr_1_4?s=pc&ie=UTF8&qid=1476554672&sr=1-4">Raspberry pi 2</a></td>
+<td>Raspberry pi 2</td>
 <td>$36</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/ubec.png"></td>
-<td><a href="url">6-60V - 5V 3A UBEC</a></td>
-<td>$19</td>
+<td>Raspberry pi PoE hat</td>
+<td>$25</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/poe.png"></td>
-<td><a href="https://www.amazon.com/gp/product/B00NRGR7DC/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1">24V POE injector</a></td>
+<td>24V POE injector</td>
 <td>$10</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/surge.png"></td>
-<td><a href="https://www.amazon.com/APC-PNET1GB-ProtectNet-Standalone-Protector/dp/B000BKUSS8">APC surge protector</a></td>
+<td>APC surge protector</td>
 <td>$18</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/cable.png"></td>
-<td><a href="https://www.amazon.com/Cat5e-200FT-Networking-Ethernet-Router/dp/B01BMZ0AWO/ref=sr_1_1?s=pc&ie=UTF8&qid=1476554915&sr=1-1">200ft / 50m Cat5e cable</a></td>
+<td>200ft / 50m Cat5e cable</td>
 <td>$13</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/globe.png"></td>
-<td><a href="http://lampsclinic.com/4-x-8-glass-clear-globe-glass-shade-3011.html">8" glass globe lamp cover</a></td>
+<td>8" glass globe lamp cover</td>
 <td>$35</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/pipe.png"></td>
-<td><a href="http://www.homedepot.com/p/4-in-x-10-ft-PVC-Sch-40-DWV-Plain-End-Pipe-531103/100156409">4" (10cm) PVC pipe</a></td>
+<td>4" (10cm) PVC pipe</td>
 <td>$20</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/coupler.png"></td>
-<td><a href="http://www.homedepot.com/p/4-in-PVC-DWV-Coupling-C4801HD4/100342850">4" (10cm) PVC coupler</a></td>
+<td>4" (10cm) PVC coupler</td>
 <td>$2.5</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/pole.png"></td>
-<td><a href="http://www.homedepot.com/p/3-5-in-x-3-5-in-x-8-ft-Pressure-Treated-Landscape-Timber-129430/100037766">3.5" Wooden Fence post</a></td>
+<td>3.5" Wooden Fence post</td>
 <td>$5</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/spike.png"></td>
-<td><a href="https://www.amazon.com/gp/product/B000QUCB2O/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1">36" ground anchor</a></td>
+<td>36" ground anchor</td>
 <td>$30</td>
 </tr>
 <tr>
