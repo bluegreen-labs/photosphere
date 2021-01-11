@@ -31,9 +31,18 @@ fi
 
 # build the libptp library and ptpcam program
 # I included this in the github repository
-cd ~/libptp/
+cd ./libptp/
+
+# don't update aclocal / Makefiles
+touch aclocal.m4
+touch Makefile.am
+touch Makefile.in
+
+# configure and make the tools
 ./configure && make
-sudo ./make install
+
+# system wide install
+sudo make install
 
 # run ldconfig to link libraries properly
 sudo ldconfig

@@ -60,17 +60,27 @@ datetime=` date +%Y_%m_%d_%H%M%S`
 
 # check if the camera is connected
 # if not exit cleanly
-status=`ptpcam -i | grep "serial" | wc -l`
+status=`ptpcam --show-property=0x5001 | grep "ERROR" | wc -l`
 
-if [ "$status" = "0" ];
+if [ "$status" = "1" ];
 then
 	echo ""
-	echo "Your camera is not active, connected or mounted as a drive!"
+	echo "Your camera is not active"
 	echo "-----------------------------------------------------------"
-	echo "Check your usb cable, turn the camera on and make sure"
-	echo "that your camera is not mounted as a drive."
+	echo "activating your camera"
 	echo ""
-	exit 0
+	echo ""
+	
+	# activate the camera
+	boot=`ptpcam --set-property=0xD80E --val=0x00 | grep "succeeded" | wc -l`
+	
+	if [ "$boot" == 1 ];
+	then
+         echo "booting the device... (waiting 10s)"
+	 sleep 10
+	else
+         exit 0
+	fi
 fi
 
 # check the battery status
@@ -180,10 +190,10 @@ else
 fi
 
 # upload new data to an image server
-if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
-|| [[ "$upload" == "t" || "$upload" == true ]]
-then
+#if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
+#|| [[ "$upload" == "t" || "$upload" == true ]]
+#then
 	# puts images in the 'data' folder of an anonymous FTP server
-	lftp ftp://anonymous:anonymous@${server} -e "mirror --verbose --reverse --Remove-source-files ./ ./data/ ;quit"
-fi
+	#lftp ftp://anonymous:anonymous@${server} -e "mirror --verbose --reverse --Remove-source-files ./ ./data/ ;quit"
+#fi
 
