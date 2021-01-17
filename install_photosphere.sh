@@ -11,12 +11,6 @@ sudo apt-get -y update > /dev/null 2>&1
 # install development libraries for libusb
 # needed by libptp
 sudo apt-get -y install libusb-dev
-sudo apt-get -y install lftp
-
-# add lftp settings (kicks session so it doesn't keep trying)
-sudo echo "set net:timeout 5" >> /etc/lftp.conf
-sudo echo "set net:max-retries 2" >> /etc/lftp.conf
-sudo echo "set net:reconnect-interval-base 5" >> /etc/lftp.conf
 
 # create ramdisk for the image stream
 # this prevents writing to disk and potential
