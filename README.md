@@ -1,8 +1,8 @@
 # Photosphere
 
-The photosphere project combines a Rico Theta S and a raspberry pi with a custom outdoor housing into a rugged 360 (outdoor) time-lapse camera. In my application I track changes in leaf development in a North-Eastern US forest. You can visit the project website at http://virtualforest.io. However, other applications are possible (hints on how to do nighttime images through the USB API are welcome).
+The photosphere project combines a Rico Theta Z1 and a raspberry pi with a custom outdoor housing into a rugged 360 (outdoor) time-lapse camera. In my application I track changes in leaf development in a North-Eastern US forest. You can visit the project website at http://virtualforest.io.
 
-The housing is made of standard PVC fittings, sitting on top of a garden fence post. The optics are covered by a glass lamp shade to provide optimal transmission and limited deformation (acrylic globes can be used as well). The only custom part is the plate on which the camera is mount using 1/4" steel thread. This plate is cut out of 3mm acrylic plastic. A vertical support also holds the raspberry pi to keep things tidy (see cad files). I use two 3mm plates extra rigidity (glued together). You can also use a 6mm top plate and a 3mm vertical plate. The inside of the "lens cover" is spray painted matte black to limit reflections.
+The housing is made of standard PVC fittings, sitting on top of a garden fence post. The optics are covered by a glass lamp shade to provide optimal transmission and limited deformation (acrylic globes can be used as well). The only custom part is the mounting setup of the camera which is a 3D printed PLA setup. Black PLA is used to limit internal reflections.
 
 Constructed and placed in the forest the camera looks like a garden lamp (see figure). Here the blue wire is the ethernet cable which runs to a nearby hub, and serves as the internet and power connection. The yellow wire is the ground wire for the surge protector, to protect the camera from voltage spikes due to nearby lightning strikes.
 
@@ -31,22 +31,22 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/thetas.png"></td>
-<td>Ricoh Theta S</td>
-<td>$350</td>
+<td>Ricoh Theta Z1</td>
+<td>$990</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/pi.png"></td>
-<td>Raspberry pi 2</td>
+<td>Raspberry pi 3B+</td>
 <td>$36</td>
 </tr>
 <tr>
-<td><img src="http://virtualforest.io/images/ubec.png"></td>
+<td><img src="http://virtualforest.io/images/pihat.jpg"></td>
 <td>Raspberry pi PoE hat</td>
 <td>$25</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/poe.png"></td>
-<td>24V POE injector</td>
+<td>48V POE injector</td>
 <td>$10</td>
 </tr>
 <tr>
@@ -84,37 +84,11 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 <td>36" ground anchor</td>
 <td>$30</td>
 </tr>
-<tr>
-<td><img src="http://virtualforest.io/images/plexi.png"></td>
-<td> 3mm Plexiglass sheet</td>
-<td>$5</td>
-</tr>
-
-<tr>
-<td><img src="http://virtualforest.io/images/rod.png"></td>
-<td> 1/4" stainless steel rod</td>
-<td>$1</td>
-</tr>
-
-
-<tr>
-<td><img src="http://virtualforest.io/images/nut.png"></td>
-<td> 1/4" (coupling) nuts</td>
-<td>$1</td>
-</tr>
-
-
-<tr>
-<td><img src="http://virtualforest.io/images/washer.png"></td>
-<td> 1/4" washers</td>
-<td>$1</td>
-</tr>
-
 
 <tr>
 <td></td>
 <td>TOTAL</td>
-<td>~$550</td>
+<td>~$1200</td>
 </tr>
 </tbody>
 </table>
