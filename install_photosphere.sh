@@ -49,7 +49,7 @@ sudo make install
 sudo ldconfig
 
 # setup crontab file to upload pictures every 15 min
-echo "*/15 * * * * ~/photosphere/./capture_sphere.sh -n false -u true" >> mycron
+echo "*/15 * * * * ~/photosphere/./capture_sphere.sh -u false" >> mycron
 
 #install new cron file
 crontab mycron
