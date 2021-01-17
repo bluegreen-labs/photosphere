@@ -34,6 +34,7 @@ fi
 cd ./libptp/
 
 # don't update aclocal / Makefiles
+# update time stamps
 touch aclocal.m4
 touch Makefile.am
 touch Makefile.in

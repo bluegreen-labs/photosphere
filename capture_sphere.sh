@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Snaps THETA S pictures
+# Snaps THETA Z1 pictures
 # uploads them and deletes the
 # images on the camera to free up memory
 # needs to be called using crontab for a time lapse
@@ -21,17 +21,12 @@ while getopts ":h?u:n:s:" opt; do
     h|\?)
    		echo "No arguments provided"
     	echo "use: -u true / false (upload)"
-    	echo "use: -n true / false (night mode)"
     	echo "use: -s xxx.xxx.xxx.xxx (ip address / domain name)"
     	exit 0
         ;;
     u)  
     	upload=$OPTARG
     	;;
-    n)  
-    	nightmode=$OPTARG
-    	;;
-    	
     s)  
     	server=$OPTARG
     	;;
@@ -47,7 +42,6 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/u
 
 # set working directory
 # in which to save the data
-#cd ~/tmp/ # for testing only
 cd /var/tmp/
 
 # make sure to unmount the camera
@@ -98,72 +92,31 @@ fi
 # set the timeout to indefinite
 # as well as the sleep delay
 # this prevents timed shutdowns
-ptpcam --set-property=0xd803 --val=0 # sleep delay
-ptpcam --set-property=0xd802 --val=0 # set auto power off
-ptpcam --set-property=0x502c --val=100 # set shutter sound to max
+#ptpcam --set-property=0xd803 --val=0 # sleep delay
+#ptpcam --set-property=0xd802 --val=0 # set auto power off
+ptpcam --set-property=0x502c --val=0 # set shutter sound to min 0 or max 100
 
 # list all files on the device
 handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
 
-
 # clear all files on the device before capturing
 # any new data
-do
+for i in $handle;do
 	ptpcam --delete-object=$i
 done
 
-if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] || [[ "$nightmode" == "f" || "$nightmode" == "false" ]];
-	then
 
-	# loop over 2 exposure settings
-	exposures="0 -2000"
+# loop over 2 exposure settings
+exposures="0 -2000"
 	
-	for exp in $exposures;do
-		# Change settings
-		ptpcam --set-property=0x500E --val=0x8003 # ISO priority
-		ptpcam --set-property=0x5005 --val=0x8001 # set WB
-		ptpcam --set-property=0x500F --val=100 # set ISO
-		ptpcam --set-property=0x5010 --val=$exp # set compensation
+ptpcam --set-property=0x500E --val=0x8003 # ISO priority
+ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+ptpcam --set-property=0x500F --val=100 # set ISO
+	
+for exp in $exposures;do
+	# Change settings of exposure compensation
+	ptpcam --set-property=0x5010 --val=$exp # set compensation
 		
-		# snap picture
-		# and wait for it to complete (max 60s)
-		ptpcam -c
-		sleep 60
-	
-		# list last file
-		handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
-		#filename=`ptpcam -L | grep 0x | awk '{print $5}'`
-
-		# grab the last file
-		ptpcam --get-file=$handle
-
-		# grab filename of the last downloaded file
-		filename=`ls -t | head -1`
-
-		# create filename based upon time / date
-		newfilename=`echo $camera\_exp$exp\_$datetime.jpg`
-
-		# rename the last file created
-		mv $filename $newfilename
-
-		# remove file
-		ptpcam --delete-object=$handle
-	done
-
-else 
-	# nightmode
-	# not working yet, doesn't accept the
-	# shutter speeds !!!!!
-	
-	# Change settings
-	ptpcam --set-property=0x500E --val=0x0001 # set ? priority
-	ptpcam --set-property=0x5005 --val=0x8001 # set WB
-	ptpcam --set-property=0x500F --val=200 # set ISO
-	
-	# hex 1e = 30 decimal 01 = 1 => 30 / 1 s
-	echo -e -n  '\x1e\x00\x00\x00\x01\x00\x00\x00' > /tmp/exposure.bin # 30s
-	ptpcam -R 0x1016,0xd00f,0,0,0,0,/tmp/exposure.bin
-	
 	# snap picture
 	# and wait for it to complete (max 60s)
 	ptpcam -c
@@ -171,23 +124,25 @@ else
 	
 	# list last file
 	handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
-	#filename=`ptpcam -L | grep 0x | awk '{print $5}'`
-
+	
 	# grab the last file
+	# wait a bit otherwise the next
+	# commands are too fast
 	ptpcam --get-file=$handle
+	sleep 10
 
 	# grab filename of the last downloaded file
-	filename=`ls -t | head -1`
+	filename=`ls -t *.JPG | head -1`
 
 	# create filename based upon time / date
-	newfilename=`echo $camera\_exp0\_$datetime.jpg`
+	newfilename=`echo $camera\-exp$exp\_$datetime.jpg`
 
 	# rename the last file created
 	mv $filename $newfilename
 
 	# remove file
 	ptpcam --delete-object=$handle
-fi
+done
 
 # upload new data to an image server
 #if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
