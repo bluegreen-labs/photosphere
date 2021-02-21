@@ -145,10 +145,41 @@ for exp in $exposures;do
 done
 
 # upload new data to an image server
-#if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
-#|| [[ "$upload" == "t" || "$upload" == true ]]
-#then
-	# puts images in the 'data' folder of an anonymous FTP server
-	#lftp ftp://anonymous:anonymous@${server} -e "mirror --verbose --reverse --Remove-source-files ./ ./data/ ;quit"
-#fi
+if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
+|| [[ "$upload" == "t" || "$upload" == true ]]
+then
+        
+        # create panorama to visualized
+        # with masked out section
+        if [ ! -f ~/photosphere/mask.png ];
+        then
+	        echo "no mask file -mask.png- in current directory" 
+	        exit 1
+	else
+          convert panorama.jpg -modulate 100,130,100 -sharpen 0x2 ~/photosphere/mask.png -compose Multiply -composite panorama.jpg
+        fi
+
+        # download github repo if not present
+        #  update panorama (overwrite whole repo)
+        # removing all previous commits
+        if [ ! -d "./theta-z1" ];
+        then        
+           # clone repo
+           git clone git@github.com:khufkens/virtualforest_image.git
+        else
+           mv panorama.jpg theta-z1/
+           cd theta-z1
+           
+           git add panorama.jpg
+           git commit -am "update"
+           git push 
+                
+        fi
+        
+
+        git clone 
+
+        
+
+fi
 
