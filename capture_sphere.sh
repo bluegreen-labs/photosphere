@@ -153,7 +153,8 @@ then
         # with masked out section
         if [ ! -f ~/photosphere/mask.png ];
         then
-	        echo "no mask file -mask.png- in current directory" 
+	        echo "no mask file -mask.png- in current directory"
+	        rm *.jpg
 	        exit 1
 		else		
 		  cp $camera\-exp0\_$datetime.jpg panorama.jpg
