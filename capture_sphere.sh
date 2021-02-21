@@ -164,22 +164,18 @@ then
         # removing all previous commits
         if [ ! -d "./theta-z1" ];
         then        
-           # clone repo
-           git clone git@github.com:khufkens/virtualforest_image.git
-        else
-           mv panorama.jpg theta-z1/
-           cd theta-z1
-           
-           git add panorama.jpg
-           git commit -am "update"
-           git push 
-                
+           # clone repo (change to yours and install ssh access)
+           git clone git@github.com:bluegreen-camera/theta-z1.git
         fi
         
-
-        git clone 
-
+        # move data and move into
+        # git directory
+        mv panorama.jpg theta-z1/
+        cd theta-z1
         
-
+        # update image   
+        git add panorama.jpg
+        git commit -am "update"
+        git push -f origin main       
 fi
 
