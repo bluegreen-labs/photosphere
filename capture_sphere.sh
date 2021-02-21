@@ -155,8 +155,9 @@ then
         then
 	        echo "no mask file -mask.png- in current directory" 
 	        exit 1
-	else
-          convert panorama.jpg -modulate 100,130,100 -sharpen 0x2 ~/photosphere/mask.png -compose Multiply -composite panorama.jpg
+		else		
+		  cp $camera\-exp0\_$datetime.jpg panorama.jpg
+          convert panorama.jpg ~/photosphere/mask.png -compose Multiply -composite panorama.jpg
         fi
 
         # download github repo if not present
@@ -176,6 +177,10 @@ then
         # update image   
         git add panorama.jpg
         git commit -am "update"
-        git push -f origin main       
+        git push -f origin main
+        
+        # remove files for now
+        rm ../*.jpg
+        
 fi
 

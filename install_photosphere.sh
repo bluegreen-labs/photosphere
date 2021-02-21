@@ -11,12 +11,14 @@ sudo apt-get -y update > /dev/null 2>&1
 # install development libraries for libusb
 # needed by libptp
 sudo apt-get -y install libusb-dev
+sudo apt-get -y install imagemagick
 
 # create ramdisk for the image stream
 # this prevents writing to disk and potential
 # corruption of the SD card on a raspberry pi
 # [this feature needs to be disabled on a laptop - not required]
-ramdisk=`cat /etc/fstab | grep data | wc -l`
+ramdisk=`cat /etc/fstab | grep tmpfs | wc -l`
+
 if [[ ramdisk != "1" ]];then
 	sudo mkdir /var/tmp
 	echo "tmpfs /var/tmp tmpfs nodev,nosuid,size=100M 0 0" | sudo tee -a /etc/fstab
