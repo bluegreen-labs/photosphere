@@ -167,13 +167,16 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
 
 else
                 
-        ptpcam --set-property=0x500E --val=0x0002 # set normal
+        #ptpcam --set-property=0x500E --val=0x0002 # set normal
+        #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
         
         # snap picture
         # and wait for it to complete (max 60s)
         ptpcam -c
-        sleep 60
+        sleep 180
 	
         # list last file
         handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
