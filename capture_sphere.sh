@@ -96,7 +96,7 @@ fi
 battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 
 # output battery status to file
-echo $battery > battery_status.txt
+echo $battery > ./theta-z1/battery_status.txt
 
 if [ "$battery" -lt 10 ];
 then
@@ -167,11 +167,11 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
 
 else
                 
-        #ptpcam --set-property=0x500E --val=0x0002 # set normal
-        #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        ptpcam --set-property=0x500E --val=0x8003 # ISO priority
+        ptpcam --set-property=0x500E --val=0x0002 # set normal
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
+        #ptpcam --set-property=0x500E --val=0x8003 # ISO priority
+        #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        #ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
         
         # snap picture
         # and wait for it to complete (max 60s)
