@@ -27,7 +27,7 @@ while getopts ":h?u:n:" opt; do
     	upload=$OPTARG
     	;;
     n)  
-    	server=$OPTARG
+    	nightmode=$OPTARG
     	;;
     :)
     	echo "Option -$OPTARG requires an argument." >&2
