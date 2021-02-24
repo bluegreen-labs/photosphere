@@ -230,7 +230,7 @@ then
         
         # change file content
         mv ../panorama.jpg .
-        mv battery_status.txt .
+        mv ../battery_status.txt .
 	
 		# add new data
         git add -A
