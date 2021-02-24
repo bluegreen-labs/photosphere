@@ -226,8 +226,8 @@ then
         git checkout --orphan latest_branch
         
         # change file content
-        mv panorama.jpg ./theta-z1/
-
+        mv ../panorama.jpg .
+        
 		# add new data
         git add -A
         git commit -am "update"
