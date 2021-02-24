@@ -36,11 +36,11 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
-# wake camera, first try
+# wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
 
 # set paths explicitly
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 TMPDIR="/var/tmp"
 
 # set working directory
@@ -67,6 +67,7 @@ datetime=` date +%Y_%m_%d_%H%M%S`
 
 # check if the camera is connected
 # if not exit cleanly
+# additional wake nudge
 status=`ptpcam --show-property=0x5001 | grep "ERROR" | wc -l`
 
 if [ "$status" = "1" ];
