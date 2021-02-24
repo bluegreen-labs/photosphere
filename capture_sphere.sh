@@ -208,20 +208,20 @@ then
         
         # create panorama to visualized
         # with masked out section
-        if [ ! -f /home/pi/photosphere/mask.png ];
+        if [ ! -f ~/photosphere/mask.png ];
         then
 	        echo "no mask file -mask.png- in current directory"
 	        rm *.jpg
 	        exit 1
 		else
 		  echo "converting image"		
-          convert $camera\-exp0\_$datetime.jpg /home/pi/photosphere/mask.png\
+          convert $camera\-exp0\_$datetime.jpg ~/photosphere/mask.png\
            -compose Multiply -composite panorama.jpg
         fi
         
         # move data and move into
         # git directory
-        cd theta-z1
+        cd theta-z1/
         
         # checkout latest
         git checkout --orphan latest_branch
