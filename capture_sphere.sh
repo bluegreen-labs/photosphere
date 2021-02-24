@@ -96,6 +96,8 @@ echo $battery > battery_status.txt
 if [ "$battery" -lt 20 ];
 then
 	echo "low battery"
+	ptpcam ---set-property=0xD80E --val=0x01 # go to sleep
+	sleep 1
 	exit 0
 fi
 
@@ -215,9 +217,17 @@ then
         # git directory
         cd theta-z1
         
-        # update image
-        git add panorama.jpg
+        # checkout latest
+        git checkout --orphan latest_branch
+        git add -A
         git commit -am "update"
+        
+        # delete main branch, rename current one
+        # to main
+        git branch -D main
+        git branch -m main
+        
+        # push new "main" to origin
         git push -f origin main
         
         # go to base directory
