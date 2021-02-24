@@ -36,6 +36,9 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
+# wake camera, first try
+ptpcam --set-property=0xD80E --val=0x00
+
 # set paths explicitly
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 TMPDIR="/var/tmp"
@@ -194,7 +197,7 @@ else
 fi
 
 # put camera into sleep mode
-ptpcam --set-property=0xD80E --val=0x01 # go to sleep
+ptpcam --set-property=0xD80E --val=0x01
 
 # upload new data to an image server
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
