@@ -93,7 +93,7 @@ battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 # output battery status to file
 echo $battery > battery_status.txt
 
-if [ "$battery" -lt 20 ];
+if [ "$battery" -lt 10 ];
 then
 	echo "low battery"
 	ptpcam ---set-property=0xD80E --val=0x01 # go to sleep
