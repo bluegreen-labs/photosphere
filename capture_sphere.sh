@@ -15,10 +15,10 @@ if [ "$*" == "" ]; then
 fi
 
 # query arguments
-while getopts ":h?u:n:s:" opt; do
+while getopts ":h?u:n:" opt; do
     case "$opt" in
     h|\?)
-   		echo "No arguments provided"
+   		echo "No arguments provided:"
     	echo "use: -u true / false (upload)"
     	echo "use: -n true / false (nightmode)"
     	exit 0
