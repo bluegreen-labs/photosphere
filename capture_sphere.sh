@@ -36,13 +36,13 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
-# wake camera, normally asleep so required
-ptpcam --set-property=0xD80E --val=0x00
-sleep 5
-
 # set paths explicitly
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 TMPDIR="/var/tmp"
+
+# wake camera, normally asleep so required
+ptpcam --set-property=0xD80E --val=0x00
+sleep 5
 
 # set working directory
 # in which to save the data
