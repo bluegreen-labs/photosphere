@@ -206,14 +206,15 @@ then
         
         # create panorama to visualized
         # with masked out section
-        if [ ! -f ~/photosphere/mask.png ];
+        if [ ! -f /home/pi/photosphere/mask.png ];
         then
 	        echo "no mask file -mask.png- in current directory"
 	        rm *.jpg
 	        exit 1
-	else		
-          convert $camera\-exp0\_$datetime.jpg ~/photosphere/mask.png\
-           -compose Multiply -composite ./theta-z1/panorama.jpg
+		else
+		  echo "converting image"		
+          convert $camera\-exp0\_$datetime.jpg /home/pi/photosphere/mask.png\
+           -compose Multiply -composite /var/tmp/theta-z1/panorama.jpg
         fi
         
         # move data and move into
