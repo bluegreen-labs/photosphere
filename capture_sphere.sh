@@ -96,7 +96,7 @@ echo $battery > battery_status.txt
 if [ "$battery" -lt 10 ];
 then
 	echo "low battery"
-	ptpcam ---set-property=0xD80E --val=0x01 # go to sleep
+	ptpcam --set-property=0xD80E --val=0x01 # go to sleep
 	sleep 1
 	exit 0
 fi
@@ -168,7 +168,7 @@ else
         # snap picture
         # and wait for it to complete (max 60s)
         ptpcam -c
-        sleep 120
+        sleep 60
 	
         # list last file
         handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
@@ -194,7 +194,7 @@ else
 fi
 
 # put camera into sleep mode
-ptpcam ---set-property=0xD80E --val=0x01 # go to sleep
+ptpcam --set-property=0xD80E --val=0x01 # go to sleep
 
 # upload new data to an image server
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
