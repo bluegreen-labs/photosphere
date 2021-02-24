@@ -220,6 +220,7 @@ then
         # move data and move into
         # git directory
         cd theta-z1
+        mv panorama.jpg ./theta-z1/
         
         # checkout latest
         git checkout --orphan latest_branch
