@@ -195,7 +195,6 @@ else
 
         # remove file
         ptpcam --delete-object=$handle
-        sleep 2
 fi
 
 # put camera into sleep mode
