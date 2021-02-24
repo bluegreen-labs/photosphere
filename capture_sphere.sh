@@ -221,10 +221,14 @@ then
         # move data and move into
         # git directory
         cd theta-z1
-        mv panorama.jpg ./theta-z1/
         
         # checkout latest
         git checkout --orphan latest_branch
+        
+        # change file content
+        mv panorama.jpg ./theta-z1/
+
+		# add new data
         git add -A
         git commit -am "update"
         
