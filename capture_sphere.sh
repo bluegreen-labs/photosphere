@@ -38,6 +38,7 @@ done
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
+sleep 5
 
 # set paths explicitly
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -131,7 +132,7 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
 	
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        ptpcam --set-property=0x500F --val=100 # set ISO
+        ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
 	
         for exp in $exposures;do
 	        # Change settings of exposure compensation
