@@ -123,7 +123,7 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
  then
          
         # loop over 2 exposure settings
-        exposures="0 -2000"
+        exposures="0"
 	
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
