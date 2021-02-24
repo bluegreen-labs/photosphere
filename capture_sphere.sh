@@ -214,7 +214,7 @@ then
 		else
 		  echo "converting image"		
           convert $camera\-exp0\_$datetime.jpg /home/pi/photosphere/mask.png\
-           -compose Multiply -composite /var/tmp/theta-z1/panorama.jpg
+           -compose Multiply -composite panorama.jpg
         fi
         
         # move data and move into
