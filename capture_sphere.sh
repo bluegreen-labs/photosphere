@@ -249,7 +249,7 @@ fi
 rm *.jpg
 
 # purge github repo
-rm -rf ./theta-z1
+rm -rf theta-z1/
 
 # done
 exit 0
