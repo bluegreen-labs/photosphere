@@ -10,7 +10,6 @@
 if [ "$*" == "" ]; then
     echo "No arguments provided"
     echo "use: -u true / false (upload)"
-    echo "use: -n true / false (night mode)"
     exit 1
 fi
 
@@ -20,14 +19,10 @@ while getopts ":h?u:n:" opt; do
     h|\?)
    		echo "No arguments provided:"
     	echo "use: -u true / false (upload)"
-    	echo "use: -n true / false (nightmode)"
     	exit 0
         ;;
     u)  
     	upload=$OPTARG
-    	;;
-    n)  
-    	nightmode=$OPTARG
     	;;
     :)
     	echo "Option -$OPTARG requires an argument." >&2
@@ -35,6 +30,16 @@ while getopts ":h?u:n:" opt; do
     	;;
     esac
 done
+
+# get the current hour
+hour=`date +%H`
+
+# set night mode based upon the hour of day
+
+if [[  ("$hour" -lt 19) && ("$hour" -gt 5) ]] ;
+ then
+	nightmode="false"
+fi
 
 # set paths explicitly
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
