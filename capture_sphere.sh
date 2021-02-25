@@ -128,8 +128,7 @@ for i in $handle;do
 done
 
 
-if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
- [[ "$nightmode" == "f" || "$nightmode" == "false" ]];
+if ["$nightmode" == "false" ];
  then         
         # set exposures
         exposures="0"
