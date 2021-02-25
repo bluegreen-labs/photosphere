@@ -35,7 +35,7 @@ done
 hour=`date +%H`
 
 # set night mode based upon the hour of day
-if [[  ("$hour" -lt 19) && ("$hour" -gt 5) ]] ;
+if [[  ("$hour" -lt 18) && ("$hour" -gt 5) ]] ;
  then
  	echo "it's daytime"
 	nightmode="false"
