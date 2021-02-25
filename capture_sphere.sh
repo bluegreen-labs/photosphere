@@ -48,8 +48,6 @@ TMPDIR="/var/tmp"
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
 sleep 5
-ptpcam --set-property=0xD80E --val=0x00
-sleep 5
 
 # set working directory
 # in which to save the data
