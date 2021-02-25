@@ -103,6 +103,7 @@ battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 # output battery status to file
 date > battery_status.txt
 echo $battery >> battery_status.txt
+echo $nightmode >> battery_status.txt
 
 if [ "$battery" -lt 10 ];
 then
