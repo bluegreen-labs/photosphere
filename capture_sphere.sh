@@ -35,9 +35,9 @@ done
 hour=`date +%H`
 
 # set night mode based upon the hour of day
-
 if [[  ("$hour" -lt 19) && ("$hour" -gt 5) ]] ;
  then
+ 	echo "it's daytime"
 	nightmode="false"
 fi
 
@@ -46,6 +46,8 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 TMPDIR="/var/tmp"
 
 # wake camera, normally asleep so required
+ptpcam --set-property=0xD80E --val=0x00
+sleep 5
 ptpcam --set-property=0xD80E --val=0x00
 sleep 5
 
@@ -114,8 +116,6 @@ fi
 # set the timeout to indefinite
 # as well as the sleep delay
 # this prevents timed shutdowns
-#ptpcam --set-property=0xd803 --val=0 # sleep delay
-#ptpcam --set-property=0xd802 --val=0 # set auto power off
 ptpcam --set-property=0x502c --val=0 # set shutter sound to min 0 or max 100
 
 # list all files on the device
@@ -130,23 +130,39 @@ done
 
 if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
  [[ "$nightmode" == "f" || "$nightmode" == "false" ]];
- then
-         
-        # loop over 2 exposure settings
+ then         
+        # set exposures
         exposures="0"
-	
+        
+		# camera settings
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
         ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
-	
-        for exp in $exposures;do
+        
+        # timeout value
+        timeout=60
+else
+        
+        # set exposures
+        exposures="0"
+        
+        # camera settings        
+        ptpcam --set-property=0x500E --val=0x0002 # set normal
+        ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        
+        # timeout value
+        timeout=180
+fi
+
+# loop over exposures if multiple
+for exp in $exposures;do
 	        # Change settings of exposure compensation
 	        ptpcam --set-property=0x5010 --val=$exp # set compensation
 		
 	        # snap picture
 	        # and wait for it to complete (max 60s)
 	        ptpcam -c
-	        sleep 60
+	        sleep $timeout
 	
 	        # list last file
 	        handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
@@ -168,42 +184,7 @@ if [[ "$nightmode" == "FALSE" || "$nightmode" == "F" ]] ||
 
 	        # remove file
 	        ptpcam --delete-object=$handle
-        done
-
-else
-                
-        ptpcam --set-property=0x500E --val=0x0002 # set normal
-        ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        #ptpcam --set-property=0x500E --val=0x8003 # ISO priority
-        #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        #ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
-        
-        # snap picture
-        # and wait for it to complete (max 60s)
-        ptpcam -c
-        sleep 180
-	
-        # list last file
-        handle=`ptpcam -L | grep 0x | awk '{print $1}' | sed 's/://g'`
-	
-        # grab the last file
-        # wait a bit otherwise the next
-        # commands are too fast
-        ptpcam --get-file=$handle
-        sleep 10
-
-        # grab filename of the last downloaded file
-        filename=`ls -t *.JPG | head -1`
-
-        # create filename based upon time / date
-        newfilename=`echo $camera\-exp0\_$datetime.jpg`
-
-        # rename the last file created
-        mv $filename $newfilename
-
-        # remove file
-        ptpcam --delete-object=$handle
-fi
+done
 
 # put camera into sleep mode
 ptpcam --set-property=0xD80E --val=0x01
