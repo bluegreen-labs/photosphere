@@ -31,6 +31,10 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
+# turn raspberry pi LEDs off
+sudo echo 0 >/sys/class/leds/led0/brightness #Turn off
+sudo echo 0 >/sys/class/leds/led1/brightness #Turn off
+
 # get the current hour
 hour=`date +%H`
 
