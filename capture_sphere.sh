@@ -39,6 +39,8 @@ if [[  ("$hour" -lt 19) && ("$hour" -gt 5) ]] ;
  then
  	echo "it's daytime"
 	nightmode="false"
+ else
+    nightmode="true"
 fi
 
 # set paths explicitly
