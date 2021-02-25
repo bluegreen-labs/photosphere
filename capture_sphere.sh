@@ -150,8 +150,11 @@ else
         exposures="0"
         
         # camera settings        
-        ptpcam --set-property=0x500E --val=0x0002 # set normal
+        #ptpcam --set-property=0x500E --val=0x0002 # set normal
+        #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
+        ptpcam --set-property=0x500F --val=400 # set ISO (good quality)
         
         # timeout value
         timeout=180
