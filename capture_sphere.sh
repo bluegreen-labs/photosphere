@@ -44,7 +44,7 @@ if [[  ("$hour" -lt 19) && ("$hour" -gt 5) ]] ;
 fi
 
 # set paths explicitly
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/vc/bin"
 TMPDIR="/var/tmp"
 
 # wake camera, normally asleep so required
@@ -104,8 +104,10 @@ battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 
 # output battery status to file
 date > battery_status.txt
+vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
+
 
 if [ "$battery" -lt 10 ];
 then
