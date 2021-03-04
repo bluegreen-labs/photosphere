@@ -136,7 +136,7 @@ for i in $handle;do
 done
 
 
-if ["$nightmode" == "false" ];
+if ["$nightmode" = "false" ];
  then         
         # set exposures
         exposures="0"
