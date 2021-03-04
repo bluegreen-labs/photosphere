@@ -66,7 +66,7 @@ if [ ! -d "./theta-z1" ];
  then
   echo "Cloning image repo..."
   # clone repo (change to yours and install ssh access)
-  git clone git@github.com:bluegreen-camera/theta-z1.git
+  git clone ssh://git@github.com:22/bluegreen-camera/theta-z1
 fi
 
 # make sure to unmount the camera
