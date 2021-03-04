@@ -136,8 +136,11 @@ for i in $handle;do
 done
 
 
-if ["$nightmode" = "false" ];
+if [[ "$nightmode" == "false" ]]
  then         
+        
+        echo "daytime shot"
+        
         # set exposures
         exposures="0"
         
@@ -150,6 +153,7 @@ if ["$nightmode" = "false" ];
         timeout=60
 else
         
+        echo "nighttime shot"
         # set exposures
         exposures="0"
         
