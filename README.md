@@ -6,7 +6,7 @@ The housing is made of standard PVC fittings, sitting on top of a garden fence p
 
 Constructed and placed in the forest the camera looks like a garden lamp (see figure). Here the blue wire is the ethernet cable which runs to a nearby hub, and serves as the internet and power connection. The yellow wire is the ground wire for the surge protector, to protect the camera from voltage spikes due to nearby lightning strikes.
 
-<img src="http://virtualforest.io/images/camera.jpg">
+<img src="http://virtualforest.io/img/featured.jpg">
 
 ## Installation
 
