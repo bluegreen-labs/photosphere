@@ -31,8 +31,8 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/thetas.png"></td>
-<td>Ricoh Theta Z1</td>
-<td>$990</td>
+<td>Ricoh Theta 360 camera</td>
+<td>~$300+</td>
 </tr>
 <tr>
 <td><img src="http://virtualforest.io/images/pi.png"></td>
@@ -88,7 +88,7 @@ I assume that common items such as screws and glue (pvc, silicone) are available
 <tr>
 <td></td>
 <td>TOTAL</td>
-<td>~$1200</td>
+<td>~$500+</td>
 </tr>
 </tbody>
 </table>
