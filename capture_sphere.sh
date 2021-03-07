@@ -31,15 +31,11 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
-# turn raspberry pi LEDs off
-sudo echo 0 >/sys/class/leds/led0/brightness
-sudo echo 0 >/sys/class/leds/led1/brightness
-
 # get the current hour
 hour=`date +%H`
 
 # set night mode based upon the hour of day
-if [[  ("$hour" -lt 17) && ("$hour" -gt 5) ]] ;
+if [[  "$hour" < 17 && "$hour" > 5 ]] ;
  then
  	echo "it's daytime"
 	nightmode="false"
@@ -82,7 +78,7 @@ datetime=` date +%Y_%m_%d_%H%M%S`
 # additional wake nudge
 status=`ptpcam --show-property=0x5001 | grep "ERROR" | wc -l`
 
-if [ "$status" = "1" ];
+if [[ "$status" == "1" ]];
 then
 	echo ""
 	echo "Your camera is not active"
@@ -162,7 +158,7 @@ else
         #ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        ptpcam --set-property=0x500F --val=1600 # set ISO (good quality)
+        ptpcam --set-property=0x500F --val=400 # set ISO (good quality)
         
         # timeout value
         timeout=180
