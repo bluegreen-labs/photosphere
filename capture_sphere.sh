@@ -153,7 +153,7 @@ if [[ "$nightmode" == "false" ]]
 		# camera settings
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
         ptpcam --set-property=0x5005 --val=0x8002 # set WB to cloudy
-        ptpcam --set-property=0x500F --val=80 # set ISO (good quality)
+        ptpcam --set-property=0x500F --val=100 # set ISO (good quality)
         
         # timeout value
         timeout=60
