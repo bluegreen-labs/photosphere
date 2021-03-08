@@ -48,7 +48,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/vc/bin"
 TMPDIR="/var/tmp"
 
 # remount everything
-sudo mount -a
+#sudo mount -a
 
 # reboot if device seems
 # not connected
