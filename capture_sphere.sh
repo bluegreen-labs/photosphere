@@ -52,12 +52,12 @@ sudo mount -a
 
 # reboot if device seems
 # not connected
-up=`ptpcam -i | wc -l`
+#up=`ptpcam -i | wc -l`
 
-if [[ "$up" == "3" ]];
-then
-   sudo shutdown -r now
-fi
+#if [[ "$up" == "3" ]];
+#then
+#   sudo shutdown -r now
+#fi
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
