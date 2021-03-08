@@ -54,7 +54,7 @@ sudo mount -a
 # not connected
 up=`ptpcam -i | wc -l`
 
-if [[ "$up" == "2" ]];
+if [[ "$up" == "3" ]];
 then
    sudo shutdown -r now
 fi
