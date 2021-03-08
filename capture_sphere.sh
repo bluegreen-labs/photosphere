@@ -49,12 +49,12 @@ TMPDIR="/var/tmp"
 
 # reboot if device seems
 # not connected, will skip this acquisition
-#up=`ptpcam -i | wc -l`
+up=`ptpcam -i | grep "THETA" | wc -l`
 
-#if [ "$up" -lt 5 ];
-#then
-#   sudo shutdown -r now
-#fi
+if [[ "$up" != "1" ]];
+then
+   sudo shutdown -r now
+fi
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
