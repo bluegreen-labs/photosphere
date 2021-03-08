@@ -47,17 +47,14 @@ fi
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/vc/bin"
 TMPDIR="/var/tmp"
 
-# remount everything
-#sudo mount -a
-
 # reboot if device seems
-# not connected
-#up=`ptpcam -i | wc -l`
+# not connected, will skip this acquisition
+up=`ptpcam -i | wc -l`
 
-#if [[ "$up" == "3" ]];
-#then
-#   sudo shutdown -r now
-#fi
+if [ "$up" -lt 5 ];
+then
+   sudo shutdown -r now
+fi
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
