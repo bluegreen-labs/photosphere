@@ -212,6 +212,9 @@ done
 # put camera into sleep mode
 ptpcam --set-property=0xD80E --val=0x01
 
+# list files, for review
+ls >> battery_status.txt
+
 # upload new data to an image server
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
 || [[ "$upload" == "t" || "$upload" == true ]]
