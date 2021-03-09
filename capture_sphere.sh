@@ -89,7 +89,7 @@ echo $nightmode >> battery_status.txt
 ptpcam -i >> battery_status.txt
 echo $up >> battery_status.txt
 
-if [ "$battery" -lt 10 ];
+if [ "$battery" -lt 25 ];
 then
 	echo "low battery"
 	ptpcam --set-property=0xD80E --val=0x01 # go to sleep
