@@ -51,10 +51,10 @@ TMPDIR="/var/tmp"
 # not connected, will skip this acquisition
 up=`ptpcam -i | grep "THETA" | wc -l`
 
-if [[ "$up" != "1" ]];
-then
-   sudo shutdown -r now
-fi
+#if [[ "$up" != "1" ]];
+#then
+#   sudo shutdown -r now
+#fi
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
@@ -117,7 +117,7 @@ vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
 ptpcam -i >> battery_status.txt
-
+echo $up >> battery_status.txt
 
 if [ "$battery" -lt 10 ];
 then
