@@ -51,7 +51,7 @@ TMPDIR="/var/tmp"
 # not connected, will skip this acquisition
 up=`ptpcam -i | grep "THETA" | wc -l`
 
-if [ "$up" -eq 1 ];
+if [ "$up" -eq 0 ];
 then
    sudo shutdown -r now
 fi
