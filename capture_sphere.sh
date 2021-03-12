@@ -35,8 +35,8 @@ done
 sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&formatted=0")
 
 # get sunset sunrise times
-sunrise=`echo $sun_info |jq '.results.sunrise' | cut -c 13-17`
-sunset=`echo $sun_info |jq '.results.sunset' | cut -c 13-17`
+sunrise=`echo $sun_info | jq '.results.sunrise' | cut -c 13-17`
+sunset=`echo $sun_info | jq '.results.sunset' | cut -c 13-17`
 
 # convert to unix time seconds
 sunrise=$(date -d "$sunrise Today - 30 minutes" +'%s')
@@ -96,6 +96,7 @@ battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 # output battery status to file
 echo "V1.0" > battery_status.txt
 date >> battery_status.txt
+echo $now >> battery_status.txt
 vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
