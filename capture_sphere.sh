@@ -96,7 +96,7 @@ battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 # output battery status to file
 echo "V1.0" > battery_status.txt
 date >> battery_status.txt
-echo $now >> battery_status.txt
+echo $sunset >> battery_status.txt
 vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
