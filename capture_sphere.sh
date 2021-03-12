@@ -31,9 +31,6 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
-# install jq
-sudo apt-get install -y jq
-
 # get sunset sunrise info
 sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&formatted=0")
 
@@ -97,7 +94,8 @@ fi
 battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 
 # output battery status to file
-date > battery_status.txt
+echo "V1.0" > battery_status.txt
+date >> battery_status.txt
 vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
