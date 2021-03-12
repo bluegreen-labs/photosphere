@@ -31,17 +31,24 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
+# install jq
+sudo apt-get install -y jq
+
 # get sunset sunrise info
 sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&formatted=0")
 
+# get sunset sunrise times
 sunrise=`echo $sun_info |jq '.results.sunrise' | cut -c 13-17`
 sunset=`echo $sun_info |jq '.results.sunset' | cut -c 13-17`
 
+# convert to unix time seconds
 sunrise=$(date -d "$sunrise Today - 30 minutes" +'%s')
 sunset=$(date -d "$sunset Today + 30 minutes" +'%s')
+
+# get current time in unix time seconds
 now=$(date +'%s')
 
-# set night mode based upon the hour of day
+# set night mode based upon the seconds of day
 if  [ $now -le $sunset ] && [ $now -ge $sunrise ];
  then
  	echo "it's daytime"
