@@ -31,15 +31,23 @@ while getopts ":h?u:n:" opt; do
     esac
 done
 
-# get the current hour
-hour=`date +%H`
+# get sunset sunrise info
+sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&formatted=0")
+
+sunrise=`echo $sun_info |jq '.results.sunrise' | cut -c 13-17`
+sunset=`echo $sun_info |jq '.results.sunset' | cut -c 13-17`
+
+sunrise=$(date -d "$sunrise Today - 30 minutes" +'%s')
+sunset=$(date -d "$sunset Today + 30 minutes" +'%s')
+now=$(date +'%s')
 
 # set night mode based upon the hour of day
-if  [ "$hour" -lt 17 ] && [ "$hour" -gt 5 ];
+if  [ $now -le $sunset ] && [ $now -ge $sunrise ];
  then
  	echo "it's daytime"
 	nightmode="false"
  else
+ 	echo "it's nighttime"
     nightmode="true"
 fi
 
