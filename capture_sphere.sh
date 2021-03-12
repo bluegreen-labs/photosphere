@@ -32,7 +32,7 @@ while getopts ":h?u:n:" opt; do
 done
 
 # get sunset sunrise info
-sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&formatted=0")
+sun_info=$(curl -s  "https://api.sunrise-sunset.org/json?lat=50.98357458347184&lng=3.798106514034491&formatted=0")
 
 # get sunset sunrise times
 sunrise=`echo $sun_info | jq '.results.sunrise' | cut -c 13-17`
