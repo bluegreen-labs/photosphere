@@ -100,8 +100,8 @@ echo $now >> battery_status.txt
 vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
-ptpcam -i >> battery_status.txt
-echo $up >> battery_status.txt
+#ptpcam -i >> battery_status.txt
+echo "camera is running: $up" >> battery_status.txt
 
 if [ "$battery" -lt 25 ];
 then
