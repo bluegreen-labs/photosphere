@@ -59,14 +59,18 @@ TMPDIR="/var/tmp"
 # not connected, will skip this acquisition
 up=`ptpcam -i | grep "THETA" | wc -l`
 
-if [[ "$up" != "1" ]];
-then
-   sudo shutdown -r now
-fi
+#if [ "$up" -eq 0 ];
+#then
+#   sudo shutdown -r now
+#fi
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
-sleep 20
+sleep 30
+
+# wake camera, normally asleep so required
+ptpcam --set-property=0xD80E --val=0x00
+sleep 30
 
 # set working directory
 # in which to save the data
@@ -82,40 +86,6 @@ if [ ! -d "./theta-z1" ];
   git clone ssh://git@github.com:22/bluegreen-camera/theta-z1
 fi
 
-# make sure to unmount the camera
-# basically in text mode it should not
-# auto mount (as far as I know)
-
-# cameraname
-camera="virtualforest"
-datetime=` date +%Y_%m_%d_%H%M%S`
-
-# check if the camera is connected
-# if not exit cleanly
-# additional wake nudge
-status=`ptpcam --show-property=0x5001 | grep "ERROR" | wc -l`
-
-if [[ "$status" == "1" ]];
-then
-	echo ""
-	echo "Your camera is not active"
-	echo "-----------------------------------------------------------"
-	echo "activating your camera"
-	echo ""
-	echo ""
-	
-	# activate the camera
-	boot=`ptpcam --set-property=0xD80E --val=0x00 | grep "succeeded" | wc -l`
-	
-	if [ "$boot" == 1 ];
-	then
-         echo "booting the device... (waiting 10s)"
-	 sleep 10
-	else
-         exit 0
-	fi
-fi
-
 # check the battery status
 battery=`ptpcam --show-property=0x5001 | grep "to:" | awk '{print $6}'`
 
@@ -125,9 +95,9 @@ vcgencmd measure_temp >> battery_status.txt
 echo $battery >> battery_status.txt
 echo $nightmode >> battery_status.txt
 ptpcam -i >> battery_status.txt
+echo $up >> battery_status.txt
 
-
-if [ "$battery" -lt 10 ];
+if [ "$battery" -lt 25 ];
 then
 	echo "low battery"
 	ptpcam --set-property=0xD80E --val=0x01 # go to sleep
@@ -181,6 +151,10 @@ else
         # timeout value
         timeout=180
 fi
+
+# cameraname
+camera="virtualforest"
+datetime=` date +%Y_%m_%d_%H%M%S`
 
 # loop over exposures if multiple
 for exp in $exposures;do
