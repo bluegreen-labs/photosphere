@@ -72,7 +72,7 @@ up=`ptpcam -i | grep "THETA" | wc -l`
 ptpcam --set-property=0xD80E --val=0x00
 sleep 30
 
-# wake camera, normally asleep so required
+# wake camera, normally asleep so required second nudge
 ptpcam --set-property=0xD80E --val=0x00
 sleep 30
 
@@ -132,7 +132,7 @@ if [[ "$nightmode" == "false" ]]
         echo "daytime shot"
         
         # set exposures
-        exposures="0"
+        exposures="HDR 0"
         
 		# camera settings
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
@@ -164,8 +164,15 @@ datetime=` date +%Y_%m_%d_%H%M%S`
 
 # loop over exposures if multiple
 for exp in $exposures;do
-	        # Change settings of exposure compensation
-	        ptpcam --set-property=0x5010 --val=$exp # set compensation
+
+                if [[ "$exp" == "HDR" ]];
+                then
+                        # set filter to HDR
+                        ptpcam --set-property=0xD80B --val=0x03
+                else
+                        # Change settings of exposure compensation
+        	        ptpcam --set-property=0x5010 --val=$exp # set compensation
+                fi        
 		
 	        # snap picture
 	        # and wait for it to complete (max 60s)
@@ -214,7 +221,7 @@ then
 	        exit 1
 		else
 		  echo "converting image"		
-          convert $camera\-exp0\_$datetime.jpg ~/photosphere/mask.png\
+          convert $camera\-expHDR\_$datetime.jpg ~/photosphere/mask.png\
            -compose Multiply -composite panorama.jpg
         fi
         
