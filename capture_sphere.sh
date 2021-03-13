@@ -220,9 +220,15 @@ then
 	        rm *.jpg
 	        exit 1
 		else
-		  echo "converting image"		
-          convert $camera\-expHDR\_$datetime.jpg ~/photosphere/mask.png\
-           -compose Multiply -composite panorama.jpg
+		  	echo "converting image"	
+		  	if [[ "$nightmode" == "false" ]]
+            then
+          		convert $camera\-expHDR\_$datetime.jpg ~/photosphere/mask.png\
+           		-compose Multiply -composite panorama.jpg
+            else
+            	convert $camera\-exp0\_$datetime.jpg ~/photosphere/mask.png\
+           		-compose Multiply -composite panorama.jpg
+            fi	
         fi
         
         # move data and move into
