@@ -204,9 +204,8 @@ for exp in $exposures;do
 			if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
 			|| [[ "$upload" == "t" || "$upload" == true ]]
 			then
-				rclone copy $filename remote:virtualforest/${exp} 
+				rclone copy $newfilename remote:virtualforest/$exp 
 			fi
-	        
 done
 
 # put camera into sleep mode
