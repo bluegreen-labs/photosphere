@@ -132,7 +132,7 @@ if [[ "$nightmode" == "false" ]]
         echo "daytime shot"
         
         # set exposures
-        exposures="HDR 0"
+        exposures="HDR 0 -2000"
         
 		# camera settings
         ptpcam --set-property=0x500E --val=0x8003 # ISO priority
