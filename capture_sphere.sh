@@ -199,6 +199,14 @@ for exp in $exposures;do
 
 	        # remove file
 	        ptpcam --delete-object=$handle
+	        
+	        # upload new data to an image server for backup
+			if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
+			|| [[ "$upload" == "t" || "$upload" == true ]]
+			then
+				rclone copy $filename remote:virtualforest/${exp} 
+			fi
+	        
 done
 
 # put camera into sleep mode
@@ -207,7 +215,7 @@ ptpcam --set-property=0xD80E --val=0x01
 # list files, for review
 ls >> battery_status.txt
 
-# upload new data to an image server
+# upload new data to an image server for viewing
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
 || [[ "$upload" == "t" || "$upload" == true ]]
 then
