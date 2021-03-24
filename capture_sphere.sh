@@ -199,13 +199,6 @@ for exp in $exposures;do
 
 	        # remove file
 	        ptpcam --delete-object=$handle
-	        
-	        # upload new data to an image server for backup
-			if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
-			|| [[ "$upload" == "t" || "$upload" == true ]]
-			then
-				rclone copy $newfilename remote:virtualforest/$exp 
-			fi
 done
 
 # put camera into sleep mode
@@ -218,6 +211,15 @@ ls >> battery_status.txt
 if [[ "$upload" == "TRUE" || "$upload" == "T" ]] \
 || [[ "$upload" == "t" || "$upload" == true ]]
 then
+    
+        if [[ "$nightmode" == "false" ]]
+        then   
+                # loop over exposures if multiple
+                for exp in $exposures;do
+                    newfilename=`echo $camera\-exp$exp\_$datetime.jpg`
+                    rclone copy $newfilename remote:virtualforest/$exp 
+                done
+        fi
         
         # create panorama to visualized
         # with masked out section
