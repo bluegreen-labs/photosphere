@@ -70,7 +70,11 @@ up=`ptpcam -i | grep "THETA" | wc -l`
 
 # wake camera, normally asleep so required
 ptpcam --set-property=0xD80E --val=0x00
-sleep 30
+sleep 10
+
+# wake camera, normally asleep so required second nudge
+ptpcam --set-property=0xD80E --val=0x00
+sleep 10
 
 # wake camera, normally asleep so required second nudge
 ptpcam --set-property=0xD80E --val=0x00
