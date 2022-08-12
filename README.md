@@ -13,7 +13,7 @@ Constructed and placed in the forest the camera looks like a garden lamp (see fi
 To install the software clone the project onto a raspberry pi and run the install script.
 
 ```bash
-git clone https://github.com/khufkens/photosphere.git
+git clone https://github.com/bluegreen-labs/photosphere.git
 sh install_photosphere.sh
 ```
 You will have to edit the crontab manually. Data is uploaded to github for viewing, but additional lines can be added to upload captures elsewhere for permanent storage (either on- or offline).
